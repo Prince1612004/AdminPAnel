@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet" />
+    <title>Random Website</title>
+    <style>
+        /* Animations */
+        @keyframes float1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20px, 20px);
+            }
+        }
+
+        @keyframes float2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-15px, 15px);
+            }
+        }
+
+        @keyframes float3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+        }
+
+        .animate-float1 {
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .animate-float2 {
+            animation: float2 10s ease-in-out infinite;
+        }
+
+        .animate-float3 {
+            animation: float3 12s ease-in-out infinite;
+        }
+
+        /* Orb follow effect */
+        .orb {
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header class="h-2 bg-gray-400">
+        <div class="bg-orange-100 min-h-screen">
+            <div class="fixed bg-white text-blue-800 px-10 py-1 z-10 w-full">
+                <div class="flex items-center justify-between py-2 text-5x1">
+                    <div class="font-bold text-blue-900 text-xl">Admin<span class="text-orange-600">Panel</span></div>
+                    <div class="flex items-center text-gray-500">
+                        <span class="material-icons-outlined p-2" style="font-size: 30px">search</span>
+                        <span class="material-icons-outlined p-2" style="font-size: 30px">notifications</span>
+                        <div class="bg-center bg-cover bg-no-repeat rounded-full inline-block h-12 w-12 ml-2"
+                            style="background-image: url(https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+
+    <main class="h-157 bg-blue-400 mt-12">
+        <div class="flex h-screen">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-gray-900 text-white">
+                <!-- <div class="p-4 border-b border-gray-800">
+                    <div class="flex items-center justify-between">
+                        <img src="https://tailwindflex.com/images/logo.svg" alt="Logo" class="h-8 w-auto">
+                        <span class="text-xl font-bold">Admin Pro</span>
+                    </div>
+                </div> -->
+
+                <!-- Search Bar -->
+                <!-- <div class="p-4">
+                    <div class="relative">
+                        <input type="text" class="w-full bg-gray-800 text-white rounded-md pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Search...">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div> -->
+
+                <nav class="mt-5 px-2">
+                    <!-- Main Navigation -->
+                    <div class="space-y-4">
+                        <!-- Dashboard -->
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg bg-gray-800 text-white group transition-all duration-200 hover:bg-gray-700">
+                            <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Dashboard
+                        </a>
+
+                        <!-- Analytics Dropdown -->
+                        <div class="space-y-1">
+                            <button
+                                class="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none"
+                                aria-expanded="true" aria-controls="analytics-dropdown">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                    </svg>
+                                    Analytics
+                                </div>
+                                <svg class="ml-2 h-5 w-5 transform transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="space-y-1 pl-11" id="analytics-dropdown">
+                                <a href="#"
+                                    class="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                                    Overview
+                                </a>
+                                <a href="#"
+                                    class="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                                    Reports
+                                </a>
+                                <a href="#"
+                                    class="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                                    Statistics
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Team Dropdown -->
+                        <div class="space-y-1">
+                            <button
+                                class="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none"
+                                aria-expanded="false" aria-controls="team-dropdown">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                    Team
+                                </div>
+                                <svg class="ml-2 h-5 w-5 transform transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="hidden space-y-1 pl-11" id="team-dropdown">
+                                <p href="#"
+                                    class="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+                                    id="add-member">
+                                    Add Members
+                                </p>
+                                <p href="#"
+                                    class="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+                                    id="displayMembers">
+                                    Display Members
+                                </p>
+                                <a href="#"
+                                    class="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                                    Settings
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Projects -->
+                        <p href="#" id="projects"
+                            class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
+                            <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                            </svg>
+                            Projects
+                        </p>
+
+                        <!-- Documents -->
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
+                            <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Documents
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="mt-auto p-4 border-t border-gray-800">
+                    <div class="flex items-center">
+                        <img class="h-8 w-8 rounded-full"
+                            src="https://i.pinimg.com/564x/de/0f/3d/de0f3d06d2c6dbf29a888cf78e4c0323.jpg" alt="">
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-white">Pikachu</p>
+                            <p class="text-xs text-gray-400">View profile</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <main class="flex-1 p-6 bg-gray-100 overflow-scroll" id="main-content">
+                <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+                <div class="mt-4 p-6 bg-white rounde<a href=" #"
+                    class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
+                    <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Calendar
+                    </a>d-lg shadow-md">
+                    <p class="text-gray-600">This is a dark sidebar example with submenus.</p>
+                </div>
+            </main>
+    </main>
+    <footer class="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden mt-12 h-80">
+        <!-- Animated background elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl animate-float1">
+            </div>
+            <div class="absolute top-40 right-20 w-40 h-40 bg-purple-500 rounded-full filter blur-3xl animate-float2">
+            </div>
+            <div class="absolute bottom-10 left-1/2 w-48 h-48 bg-cyan-500 rounded-full filter blur-3xl animate-float3">
+            </div>
+        </div>
+
+        <!-- Main footer content -->
+        <div class="relative max-w-7xl mx-auto px-6 py-16 sm:py-20 lg:px-8">
+            <!-- Grid layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12">
+
+                <!-- Logo/Name section with interactive effect -->
+                <div class="group">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition duration-500">
+                            <span class="text-xl font-bold">MD</span>
+                        </div>
+                        <h2
+                            class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+                            Manuel Dala
+                        </h2>
+                    </div>
+                    <p class="text-gray-300 mb-6">Innovating digital experiences one line of code at a time.</p>
+
+                    <!-- Social media with hover glow -->
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-sky-500 hover:shadow-lg hover:shadow-sky-500/30 transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-500 hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick links with hover effect -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 relative inline-block">
+                        <span class="relative z-10">Quick Links</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a href="#"
+                                class="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center">
+                                <span
+                                    class="w-1 h-1 bg-blue-500 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition duration-300"></span>
+                                Home</a></li>
+                        <li><a href="#"
+                                class="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center">
+                                <span
+                                    class="w-1 h-1 bg-blue-500 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition duration-300"></span>
+                                Projects</a></li>
+                        <li><a href="#"
+                                class="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center">
+                                <span
+                                    class="w-1 h-1 bg-blue-500 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition duration-300"></span>
+                                Services</a></li>
+                        <li><a href="#"
+                                class="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center">
+                                <span
+                                    class="w-1 h-1 bg-blue-500 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition duration-300"></span>
+                                Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact info with animated icons -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Get in Touch</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div
+                                    class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center animate-pulse">
+                                    <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-300">Email</p>
+                                <a href="mailto:manueljosedala@hotmail.com"
+                                    class="text-white hover:text-blue-400 transition">manueljosedala@hotmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center animate-pulse"
+                                    style="animation-delay: 0.2s">
+                                    <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-300">Phone</p>
+                                <a href="tel:+244941540352" class="text-white hover:text-blue-400 transition">+244 941
+                                    540 352</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter with floating input -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Stay Updated</h3>
+                    <p class="text-gray-300 mb-4">Subscribe to my newsletter for the latest updates.</p>
+                    <form class="mt-4">
+                        <div class="relative">
+                            <input type="email" placeholder="Your email"
+                                class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 text-white">
+                            <button type="submit"
+                                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-1 transition">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom section with animated copyright -->
+            <div class="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; <span id="year" class="text-blue-400"></span> Manuel Dala. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Cookies</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating orb that follows cursor -->
+        <div
+            class="orb absolute w-64 h-64 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 filter blur-3xl pointer-events-none">
+        </div>
+
+    </footer>
+
+
+    <script>
+        // Dropdown functionality
+        document.querySelectorAll('button[aria-controls]').forEach(button => {
+            button.addEventListener('click', () => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                const dropdownContent = document.getElementById(button.getAttribute('aria-controls'));
+
+                button.setAttribute('aria-expanded', !isExpanded);
+                dropdownContent.classList.toggle('hidden');
+                button.querySelector('svg:last-child').classList.toggle('rotate-180');
+            });
+        });
+
+        // Update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mouse follow orb effect
+        document.addEventListener('mousemove', (e) => {
+            const orb = document.querySelector('.orb');
+            orb.style.left = `${e.clientX}px`;
+            orb.style.top = `${e.clientY}px`;
+        });
+
+        let addMemberButton = document.getElementById('add-member');
+        let mainContent = document.getElementById('main-content');
+        addMemberButton.addEventListener("click", () => {
+            mainContent.innerHTML = `
+                <section class="bg-white p-1 xs:p-8">
+        <div class=" max-w-96 sm:max-w-4xl mx-auto border border-[#4D7C0F] rounded-lg p-8">
+            <h2 class="sm:text-xl text-[12px] font-bold mb-6">New Member</h2>
+            <form id="addMemberForm" class="space-y-6">
+                <div class="space-y-6">
+                    <div>
+                        <label for="fullName" class="text-xs xs:text-sm font-medium text-gray-700 mb-1 ">Full
+                            Name<!-- --> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" color="#9CA3AF"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-circle-alert inline-block">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" x2="12" y1="8" y2="12"></line>
+                                <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                            </svg> </label>
+                            <input type="text" id="fullName" class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2" name="fullName" value="">
+                    </div>
+                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
+                        <div>
+                            <label for="courses"
+                                class="text-xs xs:text-sm font-medium text-gray-700 mb-1">Courses</label>
+                            <select name="courses" id="courses"
+                                class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2">
+                                <option value="" selected="">Select</option>
+                                <option value="javaFullStack">Java Full Stack</option>
+                                <option value="pythonFullStack">Python Full Stack</option>
+                                <option value="Python Full Stack">AIDS</option>
+                            </select>
+                        </div>             
+                        <div>
+                            <label for="paymentStatus" class="text-xs xs:text-sm font-medium text-gray-700 mb-1">Payment
+                                Status</label>
+                            <select name="payment" id="paymentStatus"
+                                class="h-[50px] rounded-[5px] text-xs xs:text-sm border border-[#D1D5DB] w-full px-2">
+                                <option value="" selected="">Select</option>
+                                <option value="paid">Paid</option>
+                                <option value="unpaid">Unpaid</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end">
+                    <button type="submit"
+                        class=" sm:w-[86px] w-full h-[50px] text-xs sm:text-base bg-[#4D7C0F] rounded-[5px] p-[13px_25px] gap-[10px] text-white">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+            `
+
+            let fName = document.getElementById('fullName');
+            let courses = document.getElementById('courses');
+            let paymentStatus = document.getElementById('paymentStatus');
+            let addMemberForm = document.getElementById('addMemberForm');
+
+            // console.log(fName);
+            // console.log(courses);
+            // console.log(paymentStatus);
+            // console.log(addMemberForm);
+
+            let userData = {
+                id: "",
+                Name: "",
+                Courses: "",
+                PaymentStatus: ""
+            };
+
+            courses.addEventListener("change", (e) => {
+                userData.Courses = e.target.value;
+            });
+            paymentStatus.addEventListener("change", (e) => {
+                userData.PaymentStatus = e.target.value;
+            });
+
+            addMemberForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                let index = 0;
+                let membersList = JSON.parse(localStorage.getItem("addUser")) || [];
+
+                userData.id = membersList.length + 1;
+
+                userData.Name = fName.value;
+                membersList.push(userData);
+                localStorage.setItem("addUser", JSON.stringify(membersList));
+                console.log(userData);
+                console.log(membersList);
+
+            })
+
+
+        })
+
+        let newMembersList = JSON.parse(localStorage.getItem("addUser"));
+        let displayMembersButton = document.getElementById('displayMembers');
+
+        displayMembersButton.addEventListener("click", () => {
+            mainContent.innerHTML = `
+         <div class="bg-white p-8 overflow-auto mt-16 h-screen">
+  <h2 class="text-2xl mb-4">Classes List</h2>
+
+  <!-- Classes Table -->
+  <div class="relative overflow-auto">
+    <div class="overflow-x-auto rounded-lg">
+      <table class="min-w-full bg-white border mb-20">
+        <thead>
+          <tr class="bg-[#2B4DC994] text-center text-xs md:text-sm font-thin text-white">
+            <th class="p-0">
+              <span class="block py-2 px-3 border-r border-gray-300">ID</span>
+            </th> <!-- Calendar -->
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
+                            <svg class="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Calendar
+                        </a>
+            <th class="p-0">
+              <span class="block py-2 px-3 border-r border-gray-300">Name</span>
+            </th>
+            <th class="p-0">
+              <span class="block py-2 px-3 border-r border-gray-300">Course</span>
+            </th>
+            <th class="p-0">
+              <span class="block py-2 px-3 border-r border-gray-300">Payment Status</span>
+            </th>
+            <th class="p-4 text-xs md:text-sm">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+            `
+
+            let tableBody = document.getElementById('tableBody');
+            let inputData = "";
+            newMembersList.map((e) => {
+                inputData += `
+                <tr class="border-b text-center text-xs md:text-sm font-medium text-gray-800 rounded-b-lg">
+                    <td class="p-2 md:p-4">${e.id}</td>
+                    <td class="p-2 md:p-4">${e.Name}</td>
+                    <td class="p-2 md:p-4">${e.Courses}</td>
+                    <td class="p-2 md:p-4">${e.PaymentStatus}</td>
+                    <td class="relative p-2 md:p-4 flex justify-center space-x-2">
+              <button class="bg-blue-500 text-white px-3 py-1 rounded-md text-xs md:text-sm">Edit</button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded-md text-xs md:text-sm">Delete</button>
+            </td>
+                </tr>
+                `
+            })
+            tableBody.innerHTML = inputData;
+
+        });
+
+        let projectsButton = document.getElementById('projects');
+        projectsButton.addEventListener("click", () => {
+            mainContent.innerHTML = `
+            <div class="flex justify-evenly flex-wrap gap-4 mt-16">
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>Projects
+    </div>
+
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+        <a href="#!">
+            <video width="320" height="240" controls class="w-full rounded-t-lg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="p-2">
+            <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Portfolio</h5>
+            <p class="text-gray-700 text-base mb-4">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <div class="buttons flex justify-between w-full text-white mt-5">
+                <button class="border-transparent rounded-lg bg-blue-600 text-center p-1 w-30">Source code</button>
+                <button class="border-transparent rounded-lg bg-green-600 text-center p-1 w-30">View More</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+            `;
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
